@@ -1,0 +1,19 @@
+=====>Gender Starts HR
+===> Show Leave Account Days Used
+===> No Applying and Assigning Leave Twice
+===== Add a deduction and benefits history
+=====>Popular NPM package "pac-resolver" has fixed a severe remote code execution (RCE) flaw.
+
+===> https://www.ibm.com/blogs/psirt/security-bulletin-a-security-vulnerability-in-node-js-pac-resolver-module-affects-ibm-cloud-automation-manager/
+
+===>Add bank details to payroll view
+
+The pac-resolver package receives over 3 million weekly downloads, extending this vulnerability to Node.js applications relying on the open source dependency. Pac-resolver touts itself as a module that accepts JavaScript proxy configuration files and generates a function for your app to map certain domains to use a proxy.
+
+
+ /*  foreach ($tables as $table) {
+        echo "<i>" . $table->getName() . " </i><b>columns:</b><br>";
+        foreach ($table->getColumns() as $column) {
+        echo ' - ' . $column->getName() . " - " . $column->getType()->getName() . "<br>";
+        }
+        }*/
