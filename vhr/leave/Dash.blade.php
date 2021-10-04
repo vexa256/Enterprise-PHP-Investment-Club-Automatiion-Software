@@ -1,5 +1,5 @@
 <div class="text-inverse-dark fs-6 bg-dark py-5 pb-5 ps-4 mb-5">
-    <span class="p3-3 me-3"> Leave applications pending review
+    <span class="p3-3 me-3"> Human resource  leave application dashboard (All leave applications)
   </div><!--begin::Card body--><!--begin::Card body-->
     <div class="card-body pt-3 bg-light shadow-lg table-responsive">
         {{ HeaderBtn($Toggle="Declined", $Class="btn-danger", $Label="Declined", $Icon="fa-times")}}
@@ -20,7 +20,7 @@
                       <th>Unused Days</th>
                       <th>Approval Status</th>
                       <th>Leave Validity</th>
-                      <th>Actions</th>
+                      <th >Actions</th>
 
 
 
@@ -34,14 +34,14 @@
                       <td>{{$data->StaffName}}</td>
                       <td>{{$data->LeaveType}}</td>
                       <td>{{$data->Days}}</td>
-                      <td>{{$data->StartDate}}</td>
-                      <td>{{$data->EndDate}}</td>
+                      <td>{{ date('j F, Y', strtotime($data->StartDate))}}</td>
+                      <td>{{ date('j F, Y', strtotime($data->EndDate))}}</td>
                       <td>{{$data->SpentDays}}</td>
                       <td>{{$data->UnusedDays}}</td>
                       <td>{{$data->ApprovalStatus}}</td>
                       <td>{{$data->ValidityStatus}}</td>
-                      <td class="row fs-6">
-                        <div class="dropdown">
+                      <td class="row fs-6 " >
+                        <div class="dropdown" style="display: none">
                             <button class="btn btn-sm  btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                            Action
                             </button>

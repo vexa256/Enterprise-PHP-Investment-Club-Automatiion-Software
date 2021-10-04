@@ -39,7 +39,7 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-            <li><a data-route="{{ route('ReversePayroll', ['id'=>$data->SID]) }}" data-msg="You sure you want to reverse this staff member's supervisor previllages? "  class="dropdown-item deleteConfirm" href="#">Reverse Role</a></li>
+            <li><a data-route="{{ route('ReverseSuper', ['id'=>$data->SID]) }}" data-msg="You sure you want to reverse this staff member's supervisor previllages? "  class="dropdown-item deleteConfirm" href="#">Reverse Role</a></li>
 
 
         </ul>

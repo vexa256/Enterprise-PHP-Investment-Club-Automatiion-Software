@@ -13,5 +13,5 @@ $(function() {
 
     }
 
-    //SwitchClass('x_ReportsTo', 'col-md-4', 'col-md-12');
+    SwitchClass('form-select', 'form-select-solid', 'jesus');
 });

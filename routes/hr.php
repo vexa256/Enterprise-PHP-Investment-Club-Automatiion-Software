@@ -1,11 +1,103 @@
 <?php
 
+use App\Http\Controllers\AppraisalController;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\ConBenefitsController;
 use App\Http\Controllers\HrController;
 use App\Http\Controllers\HRDataController;
 use App\Http\Controllers\HRStatsController;
+use App\Http\Controllers\MainContractsController;
 use App\Http\Controllers\MainHRController;
 use App\Http\Controllers\Test;
 use Illuminate\Support\Facades\Route;
+
+Route::get('AttReport/{id}', [AttendanceController::class, 'AttReport'])->name('AttReport')->middleware("auth");
+
+Route::post('NewAttendace', [AttendanceController::class, 'NewAttendace'])->name('NewAttendace')->middleware("auth");
+
+Route::post('NewAttendanceRecord', [AttendanceController::class, 'NewAttendanceRecord'])->name('NewAttendanceRecord')->middleware("auth");
+
+Route::get('SelectAttS', [AttendanceController::class, 'SelectAttS'])->name('SelectAttS')->middleware("auth");
+
+Route::get('DelAppr/{id}', [AppraisalController::class, 'DelAppr'])->name('DelAppr')->middleware("auth");
+
+Route::post('RunApp', [AppraisalController::class, 'RunApp'])->name('RunApp')->middleware("auth");
+
+Route::get('ConApp/{id}', [AppraisalController::class, 'ConApp'])->name('ConApp')->middleware("auth");
+
+Route::get('EmpApp/{id}', [AppraisalController::class, 'EmpApp'])->name('EmpApp')->middleware("auth");
+
+Route::post('ConSelect', [AppraisalController::class, 'ConSelect'])->name('ConSelect')->middleware("auth");
+
+Route::post('EmpSelect', [AppraisalController::class, 'EmpSelect'])->name('EmpSelect')->middleware("auth");
+
+Route::get('SelectAppraisal', [AppraisalController::class, 'SelectAppraisal'])->name('SelectAppraisal')->middleware("auth");
+
+Route::post('ConBenSelected2', [ConBenefitsController::class, 'ConBenSelected2'])->name('ConBenSelected2')->middleware("auth");
+
+Route::get('AssignConBen2/{id}', [ConBenefitsController::class, 'AssignConBen2'])->name('AssignConBen2')->middleware("auth");
+
+Route::get('SelectStaffBenP', [ConBenefitsController::class, 'SelectStaffBenP'])->name('SelectStaffBenP')->middleware("auth");
+
+Route::get('ConMgtDocs/{id}', [MainContractsController::class, 'ConMgtDocs'])->name('ConMgtDocs')->middleware("auth");
+
+Route::post('ConDocSelected', [MainContractsController::class, 'ConDocSelected'])->name('ConDocSelected')->middleware("auth");
+
+Route::get('DocSelectCon', [MainContractsController::class, 'DocSelectCon'])->name('DocSelectCon')->middleware("auth");
+
+Route::get('DeleteBenAss/{id}', [ConBenefitsController::class, 'DeleteBenAss'])->name('DeleteBenAss')->middleware("auth");
+
+Route::post('CreateNewBen', [ConBenefitsController::class, 'CreateNewBen'])->name('CreateNewBen')->middleware("auth");
+
+Route::get('AssignConBen/{id}', [ConBenefitsController::class, 'AssignConBen'])->name('AssignConBen')->middleware("auth");
+
+Route::post('ConBenSelected', [ConBenefitsController::class, 'ConBenSelected'])->name('ConBenSelected')->middleware("auth");
+
+Route::get('SelectStaffBen', [ConBenefitsController::class, 'SelectStaffBen'])->name('SelectStaffBen')->middleware("auth");
+
+Route::get('DelConBen/{id}', [ConBenefitsController::class, 'DelConBen'])->name('DelConBen')->middleware("auth");
+
+Route::post('NewConBen', [ConBenefitsController::class, 'NewConBen'])->name('NewConBen')->middleware("auth");
+
+Route::get('ConBenefits', [ConBenefitsController::class, 'ConBenefits'])->name('ConBenefits')->middleware("auth");
+
+Route::get('StaffContracts', [MainContractsController::class, 'StaffContracts'])->name('StaffContracts')->middleware("auth");
+
+Route::get('ExpiredCons', [MainContractsController::class, 'ExpiredCons'])->name('ExpiredCons')->middleware("auth");
+
+Route::get('RenCon/{id}', [MainContractsController::class, 'RenCon'])->name('RenCon')->middleware("auth");
+
+Route::get('TerminatedCons', [MainContractsController::class, 'TerminatedCons'])->name('TerminatedCons')->middleware("auth");
+
+Route::get('TerminateCon/{id}', [MainContractsController::class, 'TerminateCon'])->name('TerminateCon')->middleware("auth");
+
+Route::get('DelCon/{id}', [MainContractsController::class, 'DelCon'])->name('DelCon')->middleware("auth");
+
+Route::get('ViewKinsContracts/{id}', [MainContractsController::class, 'ViewKins'])->name('ViewKinsContracts')->middleware("auth");
+
+Route::post('NewConKin', [MainContractsController::class, 'NewConKin'])->name('NewConKin')->middleware("auth");
+
+Route::post('NewContractor', [MainContractsController::class, 'NewContractor'])->name('NewContractor')->middleware("auth");
+
+Route::get('MgtContracts', [MainContractsController::class, 'MgtContracts'])->name('MgtContracts')->middleware("auth");
+
+Route::get('DeleteCat/{id}', [MainContractsController::class, 'DeleteCat'])->name('DeleteCat')->middleware("auth");
+
+Route::post('NewCat', [MainContractsController::class, 'NewCat'])->name('NewCat')->middleware("auth");
+
+Route::get('ContractCategories', [MainContractsController::class, 'ContractCategories'])->name('ContractCategories')->middleware("auth");
+
+Route::get('ApproveLeaveSupervisor', [HrController::class, 'ApproveLeaveSupervisor'])->name('ApproveLeaveSupervisor')->middleware("auth");
+
+Route::get('ReverseAssign/{id}', [HrController::class, 'ReverseAssign'])->name('ReverseAssign')->middleware("auth");
+
+Route::post('AssignNewSuper', [HrController::class, 'AssignNewSuper'])->name('AssignNewSuper')->middleware("auth");
+
+Route::get('Assign/{id}', [HrController::class, 'Assign'])->name('Assign')->middleware("auth");
+
+Route::post('SelectSuper', [HrController::class, 'SelectSuper'])->name('SelectSuper')->middleware("auth");
+
+Route::get('AssignSuper', [HrController::class, 'AssignSuper'])->name('AssignSuper')->middleware("auth");
 
 Route::get('ReverseSuper/{id}', [HrController::class, 'ReverseSuper'])->name('ReverseSuper')->middleware("auth");
 

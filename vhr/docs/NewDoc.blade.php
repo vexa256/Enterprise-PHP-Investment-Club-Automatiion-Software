@@ -38,7 +38,7 @@
 
 
                             <div class="mt-2 col-md-12" >
-                                <label class="required form-label">Upload PDF </label>
+                                <label class="required form-label">Description/Notes</label>
                                 <textarea name="Description"></textarea>
                             </div>
 

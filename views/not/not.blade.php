@@ -125,3 +125,26 @@
 
 @endif
 
+
+
+@if(isset($rem2))
+<script>
+    $(function() {
+
+@foreach ($rem2 as $val )
+    $(".x_{{$val}}").remove();
+@endforeach
+
+BootEditor();
+    });
+</script>
+@else
+<script>
+$(function() {
+
+    BootEditor();
+
+});
+</script>
+
+@endif

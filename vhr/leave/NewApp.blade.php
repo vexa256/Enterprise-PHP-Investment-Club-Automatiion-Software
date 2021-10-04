@@ -27,6 +27,7 @@
                         <input type="text" required   name="EndDate" class="form-control-sm   form-control DateArea form-control-solid" />
                     </div>
 
+                    <input type="hidden" name="TheDateToday" value="{{ date('Y-m-d') }}">
 
                     <div class="mb-3 col-md-4" >
                         <label id="label" for="" class="required form-label">Choose Leave Category</label>

@@ -6,8 +6,8 @@
               <thead>
                   <tr class="fw-bold  text-gray-800 border-bottom border-gray-200">
                       <th>Staff Name</th>
-                      <th>Email</th>
                       <th>Next of Kin</th>
+                      <th>Email</th>
                       <th>Relationship</th>
                       <th>PhoneNumber</th>
                       <th>Current Address</th>

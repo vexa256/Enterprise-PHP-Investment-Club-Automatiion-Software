@@ -29,8 +29,8 @@
 
                       <td>{{$data->LeaveType}}</td>
                       <td>{{$data->Days}}</td>
-                      <td>{{$data->StartDate}}</td>
-                      <td>{{$data->EndDate}}</td>
+                      <td>{{ date('j F, Y', strtotime($data->StartDate))}}</td>
+                      <td>{{ date('j F, Y', strtotime($data->EndDate))}}</td>
                       <td>{{$data->SpentDays}}</td>
                       <td>{{$data->UnusedDays}}</td>
                       <td>{{$data->ApprovalStatus}}</td>

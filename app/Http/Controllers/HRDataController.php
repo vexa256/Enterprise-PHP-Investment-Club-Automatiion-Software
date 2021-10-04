@@ -14,6 +14,31 @@ use Illuminate\Http\Request;
 
 class HRDataController extends Controller {
 
+    public function __construct() {
+
+        $Count = Leaves::whereDate('EndDate', '<', date('Y-m-d'))
+            ->where('ValidityStatus', 'ongoing')
+            ->count();
+
+        if ($Count > 0) {
+
+            $check = Leaves::whereDate('EndDate', '<', date('Y-m-d'))
+                ->where('ValidityStatus', 'ongoing')
+                ->get();
+
+            foreach ($check as $data) {
+
+                $Leaves = Leaves::find($data->id);
+
+                $Leaves->ValidityStatus = "Leave Expired";
+
+                $Leaves->save();
+
+            }
+
+        }
+    }
+
     public function LeaveSettings() {
 
         $Leave = LeaveTypes::all();
@@ -196,12 +221,13 @@ class HRDataController extends Controller {
         $SpentDays = 0;
 
         $validated = $this->validate($request, [
-
-            'StartDate' => 'required|date',
-            'EndDate'   => 'required|date|after_or_equal:StartDate',
-            "LID"       => "required",
-            "AppLetter" => "required",
-            "EmpID"     => "required",
+            'TheDateToday' => 'required|date',
+            'StartDate'    => 'required|date|after_or_equal:TheDateToday',
+            'EndDate'      => 'required|date|after_or_equal:StartDate',
+            'EndDate'      => 'required|date|after:TheDateToday',
+            "LID"          => "required",
+            "AppLetter"    => "required",
+            "EmpID"        => "required",
         ]);
 
         $LeaveType = LeaveTypes::where('LID', $request->LID)->first();
@@ -213,18 +239,32 @@ class HRDataController extends Controller {
         $interval     = $datetime1->diff($datetime2);
         $ConsumedDays = $interval->format('%a');
 
+        $CheckDays = AssignLeave::where('LID', $request->LID)->first();
+
+        if ($ConsumedDays > $CheckDays->Dayentitled) {
+
+            return redirect()->back()->with('error_a', 'Leave application not submitted, You have applied for more leave days than the days you available for this leave category');
+
+        }
+
         $count = Leaves::where('EmpID', $request->EmpID)
             ->where("LID", $request->LID)
             ->count();
 
-        $count2 = Leaves::where('EmpID', $request->EmpID)
+        $count2 = DB::table('leaves')
+            ->where('EmpID', $request->EmpID)
             ->where("LID", $request->LID)
-            ->where("ApprovalStatus", "approved")
-            ->orWhere("ValidityStatus", "ongoing")
-            ->orWhere("ApprovalStatus", "pending")
+            ->where("ApprovalStatus", "pending")
+
             ->count();
 
-        if ($count2 > 0) {
+        $count3 = DB::table('leaves')
+            ->where('EmpID', $request->EmpID)
+            ->where("LID", $request->LID)
+            ->where("ValidityStatus", "ongoing")
+            ->count();
+
+        if ($count2 > 0 || $count3 > 0) {
             return redirect()->back()->with('error_a', 'Leave application not submitted, You have an ongoing leave action');
         }
 
@@ -242,6 +282,7 @@ class HRDataController extends Controller {
             $SpentDays = $ConsumedDays;
         }
 
+        // dd($AssignLeave->Dayentitled);
         $UnusedDays = $AssignLeave->Dayentitled - $SpentDays;
 
         $Apps = new Leaves;
@@ -258,7 +299,7 @@ class HRDataController extends Controller {
         $Apps->ValidityStatus = "pending";
         $Apps->save();
 
-        return redirect()->back()->with('status', 'Leave application sent to HR for review  successfully, You will be notified by email when feedback is detected');
+        return redirect()->back()->with('status', 'Leave application sent to your assigned supervisor for review  successfully, You will be notified  when feedback is detected');
     }
 
     public function ApproveLeave($id) {

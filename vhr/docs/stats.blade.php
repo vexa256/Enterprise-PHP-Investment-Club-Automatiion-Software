@@ -5,8 +5,18 @@
         <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
             <i class="fas text-light fa-2x fa-users" aria-hidden="true"></i>
         </span>
-        <!--end::Svg Icon-->
+
+        @if (isset($Contract2))
+        <a href="#" class="text-light fw-bold fs-6 mt-2">Contractor : {{$StaffName}}</a>
+
+        @else
+
         <a href="#" class="text-light fw-bold fs-6 mt-2">Staff Member : {{$StaffName}}</a>
+
+
+        @endif
+        <!--end::Svg Icon-->
+
     </div>
     <!--end::Col-->
     <!--begin::Col-->

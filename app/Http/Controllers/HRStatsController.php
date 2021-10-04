@@ -15,6 +15,31 @@ use App\Models\User;
 
 class HRStatsController extends Controller {
 
+    public function __construct() {
+
+        $Count = Leaves::whereDate('EndDate', '<', date('Y-m-d'))
+            ->where('ValidityStatus', 'ongoing')
+            ->count();
+
+        if ($Count > 0) {
+
+            $check = Leaves::whereDate('EndDate', '<', date('Y-m-d'))
+                ->where('ValidityStatus', 'ongoing')
+                ->get();
+
+            foreach ($check as $data) {
+
+                $Leaves = Leaves::find($data->id);
+
+                $Leaves->ValidityStatus = "Leave Expired";
+
+                $Leaves->save();
+
+            }
+
+        }
+    }
+
     public function Stats() {
 
         $Leave       = LeaveTypes::all();

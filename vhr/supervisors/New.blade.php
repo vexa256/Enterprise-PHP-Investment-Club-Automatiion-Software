@@ -22,7 +22,11 @@
                         <select required name="Supervisor" class="form-select form-select-solid" data-control="select2" data-placeholder="Select staff member">
                             <option></option>
                             @isset($Employees)
+
+
                                 @foreach ($Employees as $data )
+
+
                                 <option value="{{$data->id}}">{{$data->StaffName}}</option>
                                 @endforeach
                             @endisset

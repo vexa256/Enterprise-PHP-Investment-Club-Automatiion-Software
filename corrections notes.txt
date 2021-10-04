@@ -1,0 +1,82 @@
+======> Create child Departments with foreign constraints
+
+======> Create contract false ----- end alert at 3 months ----- notification
+
+
+=======>mantain form sessions on data input___
+
+=======> remove extension file case
+
+========> Rename menu item Terminated Con status
+
+======> Contract termination should have a form with reason and other data
+
+======> Create reporting chain with non --FSCH entries
+
+=====> Sataff new Emp form has Report to chain
+
+====> Staff roles maped to EmpIDs
+
+======> Create designations table .....Map to FRID and EmpID
+
+
+======> Create Head of depatment ----correct data map
+
+
+======> Attach smtp notification to the NoticeBoard
+
+
+======> Attachment support for staff NoticeBoard
+
+
+====>Allow Attachment for all leave applications
+
+
+=======> Add gender field  for new Emp Form
+
+=====>Notify when leave ends post to staff notice ---- add to staff noticeboard --when leave is approved
+
+=======> Leave pick days not dates indicate start and end date as record-R
+
+
+======>Leave Decline has to have a reason
+
+======> Notify the supervisor by email on requests
+======> Notify the HR by email  on requests
+
+======>broadcast to noticeboard
+
+======> Meeting minutes
+
+
+
+
+
+===========Contractor==============
+
+==>TIN
+==> Remove DOB
+===>ID or Passport details
+===> Rename NIN to ID-NO
+====> Rename monthly payment to professional fees and vendors ---payment
+
+----Make bank Code OPtional
+
+-- debugg date pickers
+
+----  rename next of kins to refferees for cons
+
+----- cons rename DESIgnation   (Think of alternative word that is applicable)
+
+
+------ remove benefits for
+
+--------Put con app in the applicable secition ----contracts
+
+------ Appraisal follow given forms for planning and evaluation
+
+----- Add time tracking -----time in time out
+
+------Incoprate timesheet templates into
+
+------ Track consumables and stationary

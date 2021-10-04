@@ -12,6 +12,7 @@ use App\Models\Departments;
 use App\Models\DeptHeads;
 use App\Models\Employees;
 use App\Models\Kins;
+use App\Models\Leaves;
 use App\Models\Payroll;
 use App\Models\SatffDocs;
 use App\Models\Tax;
@@ -23,6 +24,31 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class MainHRController extends Controller {
+
+    public function __construct() {
+
+        $Count = Leaves::whereDate('EndDate', '<', date('Y-m-d'))
+            ->where('ValidityStatus', 'ongoing')
+            ->count();
+
+        if ($Count > 0) {
+
+            $check = Leaves::whereDate('EndDate', '<', date('Y-m-d'))
+                ->where('ValidityStatus', 'ongoing')
+                ->get();
+
+            foreach ($check as $data) {
+
+                $Leaves = Leaves::find($data->id);
+
+                $Leaves->ValidityStatus = "Leave Expired";
+
+                $Leaves->save();
+
+            }
+
+        }
+    }
 
     public function getTableColumns($table, $dif) {
 
@@ -108,6 +134,12 @@ class MainHRController extends Controller {
             'EmpID',
             'DOB',
             'StaffPhoto',
+            'Designation',
+            'RoleID',
+            'ReportsTo',
+            'ReportsToRoleID',
+            'Gender',
+
         ]);
         $FormKins = $this->getTableColumns("kins", [
 
@@ -147,6 +179,7 @@ class MainHRController extends Controller {
             "DOB"              => "required",
             "Department"       => "required",
             "JoiningDate"      => "required",
+            "ContractExpiry"   => "required",
             "MonthlySalary"    => "required",
             "BankName"         => "required",
             "BankBranch"       => "required",
@@ -156,8 +189,8 @@ class MainHRController extends Controller {
             "BankCode"         => "required",
             "StaffCode"        => "required",
             "EmpID"            => 'required|unique:employees',
-            'IDScan'           => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'StaffPhoto'       => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'IDScan'           => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:6048',
+            'StaffPhoto'       => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:6048',
 
         ]);
 
@@ -644,6 +677,7 @@ class MainHRController extends Controller {
         $PDF = $request->DocURL->extension();
 
         if ($PDF == "PDF" || $PDF == "pdf" || $PDF === "pdf" || $PDF === "PDF") {
+
             SatffDocs::create($validated);
 
             $DocURL = $request->file('DocURL')->store('public');
